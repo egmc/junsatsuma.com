@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+/* custom style*/
+#menu-mainmenu {
+	padding-top: 20px;
+}
+
+#content {
+	padding-top: 25px;
+}
+
+#footer {
+	background-color: #777;
+	width: 100%;
+}
+
+#widget-footer {
+	margin-top: 20px;
+}

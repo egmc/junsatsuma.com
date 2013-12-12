@@ -1,4 +1,4 @@
-<!doctype html>  
+<!doctype html>
 
 <!--[if IEMobile 7 ]> <html <?php language_attributes(); ?>class="no-js iem7"> <![endif]-->
 <!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="no-js ie6"> <![endif]-->
@@ -16,7 +16,7 @@
 				
 		<!-- media-queries.js (fallback) -->
 		<!--[if lt IE 9]>
-			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>			
+			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 		<![endif]-->
 
 		<!-- html5.js -->
@@ -29,6 +29,9 @@
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
+		
+		<link rel='stylesheet' id='junsatsuma-custom'  href='/wp-content/themes/junsatsuma-theme/custom.css' type='text/css' media='all' />
+		
 
 		<!-- theme options from options panel -->
 		<?php get_wpbs_theme_options(); ?>
