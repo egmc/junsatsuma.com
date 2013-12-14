@@ -16,8 +16,11 @@ Template Name: Full Width Page
 						
 						<header>
 							
-							<div class="page-header"><h1><?php the_title(); ?></h1></div>
-						
+							<?php if (the_title("", "", false) == 'top') { ?>
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual1_950-500.jpg" />
+							<?php  } else { ?>
+							<div class="page-header"><h1><img src="<?php echo getTitleImageURL(); ?>" /></h1></div>
+						 	<?php } ?>
 						</header> <!-- end article header -->
 					
 						<section class="post_content">
@@ -35,7 +38,7 @@ Template Name: Full Width Page
 					
 					<?php comments_template(); ?>
 					
-					<?php endwhile; ?>	
+					<?php endwhile; ?>
 					
 					<?php else : ?>
 					

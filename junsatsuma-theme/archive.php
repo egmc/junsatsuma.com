@@ -7,9 +7,9 @@
 					<div class="page-header">
 					<?php if (is_category()) { ?>
 						<h1 class="archive_title h2">
-							<span><?php _e("Posts Categorized:", "bonestheme"); ?></span> <?php single_cat_title(); ?>
+							 <?php single_cat_title(); ?>
 						</h1>
-					<?php } elseif (is_tag()) { ?> 
+					<?php } elseif (is_tag()) { ?>
 						<h1 class="archive_title h2">
 							<span><?php _e("Posts Tagged:", "bonestheme"); ?></span> <?php single_tag_title(); ?>
 						</h1>
@@ -58,7 +58,7 @@
 					
 					</article> <!-- end article -->
 					
-					<?php endwhile; ?>	
+					<?php endwhile; ?>
 					
 					<?php if (function_exists('page_navi')) { // if expirimental feature is active ?>
 						
