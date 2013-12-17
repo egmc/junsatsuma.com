@@ -33,7 +33,7 @@
 		<link rel='stylesheet' id='junsatsuma-custom'  href='/wp-content/themes/junsatsuma-theme/custom.css' type='text/css' media='all' />
 		<link rel="shortcut icon" href="/wp-content/themes/junsatsuma-theme/images/favicon.ico" type="image/vnd.microsoft.icon" />
 		<link rel="icon" href="/wp-content/themes/junsatsuma-theme/images/favicon.ico" type="image/vnd.microsoft.icon" />
-		
+		<meta property="fb:app_id" content="246337272193151" />
 
 		<!-- theme options from options panel -->
 		<?php get_wpbs_theme_options(); ?>
