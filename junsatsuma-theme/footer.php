@@ -15,7 +15,7 @@
 							<?php bones_footer_links(); // Adjust using Menus in Wordpress Admin ?>
 						</nav>
 				
-						<p class="attribution">&copy; <?php bloginfo('name'); ?></p>
+						<p class="attribution">&copy; junsatsuma.com&nbsp;since 2005</p>
 					
 					</div> <!-- end #inner-footer -->
 			</footer> <!-- end footer -->
