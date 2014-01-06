@@ -10,8 +10,15 @@
 
 							<div class="hero-unit">
 							
-								<h1><?php _e("Epic 404 - Article Not Found","bonestheme"); ?></h1>
-								<p><?php _e("This is embarassing. We can't find what you were looking for.","bonestheme"); ?></p>
+								<h1><?php _e("PAGE NOT FOUND","bonestheme"); ?></h1>
+								<h2>アクセスされたページは見つかりませんでした</h2>
+								<p>
+									ページ上部のメニューからアクセスするか検索してみてください。<br />
+									お急ぎでなければこちらのPVもどうぞ！
+								</p>
+								<p  class="text-center">
+									<iframe width="560" height="315" src="//www.youtube.com/embed/ITkr7rEtP4I?rel=0" frameborder="0" allowfullscreen></iframe>
+								</p>
 															
 							</div>
 													
@@ -19,7 +26,7 @@
 					
 						<section class="post_content">
 							
-							<p><?php _e("Whatever you were looking for was not found, but maybe try looking again or search using the form below.","bonestheme"); ?></p>
+							<p>検索はこちらから</p>
 
 							<div class="row-fluid">
 								<div class="span12">
