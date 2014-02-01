@@ -17,7 +17,34 @@ Template Name: Full Width Page
 						<header>
 							
 							<?php if (the_title("", "", false) == 'top') { ?>
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual1_950-500.jpg" />
+							<div id="slideshow">
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual1_970-500.jpg" class="active" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2_970-500.jpg" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual3_970-500.jpg" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual4_970-500.jpg" />
+							</div>
+							<script type="text/javascript">
+							jQuery(function() {
+								var slideSwitch = function () {
+								var $ = jQuery;
+							    var $active = $('#slideshow IMG.active');
+
+							    if ( $active.length == 0 ) $active = $('#slideshow IMG:last');
+
+							    var $next =  $active.next().length ? $active.next()
+							        : $('#slideshow IMG:first');
+
+							    $active.addClass('last-active');
+							        
+							    $next.css({opacity: 0.0})
+							        .addClass('active')
+							        .animate({opacity: 1.0}, 1000, function() {
+							            $active.removeClass('active last-active');
+							        });
+								};
+							    setInterval(slideSwitch, 7000 );
+							});
+							</script>
 							<?php  } else { ?>
 							<div class="page-header"><h1><img src="<?php echo getTitleImageURL(); ?>" /></h1></div>
 						 	<?php } ?>
