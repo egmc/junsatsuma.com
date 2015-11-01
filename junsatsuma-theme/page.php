@@ -18,8 +18,10 @@ Template Name: Full Width Page
 							
 							<?php if (the_title("", "", false) == 'top') { ?>
 							<div id="slideshow">
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual1_970-500.jpg" class="active" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2_970-500.jpg" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual6_970-500.jpg" class="active" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual5_970-500.jpg" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual7_970-500.jpg" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual8_970-500.jpg" />
 							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual3_970-500.jpg" />
 							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual4_970-500.jpg" />
 							</div>
