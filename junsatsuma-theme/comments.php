@@ -26,47 +26,48 @@ The comments page for Bones
 	  		<li><?php next_comments_link( __("Newer comments","bonestheme") ) ?></li>
 	 	</ul>
 	</nav>
-	
+
 	<ol class="commentlist">
 		<?php wp_list_comments('type=comment&callback=bones_comments'); ?>
 	</ol>
-	
+
 	<?php endif; ?>
-	
+
 	<?php if ( ! empty($comments_by_type['pings']) ) : ?>
 		<h3 id="pings">Trackbacks/Pingbacks</h3>
-		
+
 		<ol class="pinglist">
 			<?php wp_list_comments('type=pings&callback=list_pings'); ?>
 		</ol>
 	<?php endif; ?>
-	
+
 	<nav id="comment-nav">
 		<ul class="clearfix">
 	  		<li><?php previous_comments_link( __("Older comments","bonestheme") ) ?></li>
 	  		<li><?php next_comments_link( __("Newer comments","bonestheme") ) ?></li>
 		</ul>
 	</nav>
-  
+
 	<?php else : // this is displayed if there are no comments so far ?>
 
 	<?php if ( comments_open() ) : ?>
     	<!-- If comments are open, but there are no comments. -->
 
-	<?php else : // comments are closed 
+	<?php else : // comments are closed
 	?>
-	
+
 	<?php
 		$suppress_comments_message = of_get_option('suppress_comments_message');
 
 		if (is_page() && $suppress_comments_message) :
 	?>
-			
+
 		<?php else : ?>
-		
+
 			<!-- If comments are closed. -->
+            <!--
 			<p class="alert alert-info"><?php _e("Comments are closed","bonestheme"); ?>.</p>
-			
+            -->
 		<?php endif; ?>
 
 	<?php endif; ?>
@@ -97,9 +98,9 @@ The comments page for Bones
 	<p class="comments-logged-in-as"><?php _e("Logged in as","bonestheme"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account","bonestheme"); ?>"><?php _e("Log out","bonestheme"); ?> &raquo;</a></p>
 
 	<?php else : ?>
-	
+
 	<ul id="comment-form-elements" class="clearfix">
-		
+
 		<li>
 			<div class="control-group">
 			  <label for="author"><?php _e("Name","bonestheme"); ?> <?php if ($req) echo "(required)"; ?></label>
@@ -108,7 +109,7 @@ The comments page for Bones
 			  </div>
 		  	</div>
 		</li>
-		
+
 		<li>
 			<div class="control-group">
 			  <label for="email"><?php _e("Mail","bonestheme"); ?> <?php if ($req) echo "(required)"; ?></label>
@@ -118,7 +119,7 @@ The comments page for Bones
 			  </div>
 		  	</div>
 		</li>
-		
+
 		<li>
 			<div class="control-group">
 			  <label for="url"><?php _e("Website","bonestheme"); ?></label>
@@ -127,30 +128,30 @@ The comments page for Bones
 			  </div>
 		  	</div>
 		</li>
-		
+
 	</ul>
 
 	<?php endif; ?>
-	
+
 	<div class="clearfix">
 		<div class="input">
 			<textarea name="comment" id="comment" placeholder="<?php _e("Your Comment Here…","bonestheme"); ?>" tabindex="4"></textarea>
 		</div>
 	</div>
-	
+
 	<div class="form-actions">
 	  <input class="btn btn-primary" name="submit" type="submit" id="submit" tabindex="5" value="<?php _e("Submit Comment","bonestheme"); ?>" />
 	  <?php comment_id_fields(); ?>
 	</div>
-	
-	<?php 
+
+	<?php
 		//comment_form();
-		do_action('comment_form', $post->ID); 
-	
+		do_action('comment_form', $post->ID);
+
 	?>
-	
+
 	</form>
-	
+
 	<?php endif; // If registration required and not logged in ?>
 </section>
 
