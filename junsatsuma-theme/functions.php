@@ -114,7 +114,7 @@ function bones_register_sidebars() {
     	'before_title' => '<h4 class="widgettitle">',
     	'after_title' => '</h4>',
     ));
-    
+
     register_sidebar(array(
     	'id' => 'sidebar2',
     	'name' => 'Homepage Sidebar',
@@ -124,7 +124,7 @@ function bones_register_sidebars() {
     	'before_title' => '<h4 class="widgettitle">',
     	'after_title' => '</h4>',
     ));
-    
+
     register_sidebar(array(
       'id' => 'footer1',
       'name' => 'Footer 1',
@@ -151,26 +151,26 @@ function bones_register_sidebars() {
       'before_title' => '<h4 class="widgettitle">',
       'after_title' => '</h4>',
     ));
-    
-    
+
+
     /*
     to add more sidebars or widgetized areas, just copy
     and edit the above sidebar code. In order to call
     your new sidebar just use the following code:
-    
+
     Just change the name to whatever your new
     sidebar's id is, for example:
-    
+
     To call the sidebar in your template, you can just copy
     the sidebar.php file and rename it to your sidebar's name.
     So using the above example, it would be:
     sidebar-sidebar2.php
-    
+
     */
 } } // don't remove this bracket!
 
 /************* COMMENT LAYOUT *********************/
-		
+
 // Comment Layout
 function bones_comments($comment, $args, $depth) {
    $GLOBALS['comment'] = $comment; ?>
@@ -183,17 +183,17 @@ function bones_comments($comment, $args, $depth) {
 				<div class="span9 comment-text">
 					<?php printf('<h4>%s</h4>', get_comment_author_link()) ?>
 					<?php edit_comment_link(__('Edit','bonestheme'),'<span class="edit-comment btn btn-small btn-info"><i class="icon-white icon-pencil"></i>','</span>') ?>
-                    
+
                     <?php if ($comment->comment_approved == '0') : ?>
        					<div class="alert-message success">
           				<p><?php _e('Your comment is awaiting moderation.','bonestheme') ?></p>
           				</div>
 					<?php endif; ?>
-                    
+
                     <?php comment_text() ?>
-                    
+
                     <time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time('F jS, Y'); ?> </a></time>
-                    
+
 					<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
                 </div>
 			</div>
@@ -350,7 +350,7 @@ function show_homepage_meta_box() {
 
   // Use nonce for verification
   wp_nonce_field( basename( __FILE__ ), 'wpbs_nonce' );
-    
+
   // Begin the field table and loop
   echo '<table class="form-table">';
 
@@ -367,7 +367,7 @@ function show_homepage_meta_box() {
                       echo '<input type="text" name="'.$field['id'].'" id="'.$field['id'].'" value="'.$meta.'" size="60" />
                           <br /><span class="description">'.$field['desc'].'</span>';
                   break;
-                  
+
                   // textarea
                   case 'textarea':
                       echo '<textarea name="'.$field['id'].'" id="'.$field['id'].'" cols="80" rows="4">'.$meta.'</textarea>
@@ -383,7 +383,7 @@ function show_homepage_meta_box() {
 function save_homepage_meta( $post_id ) {
 
     global $custom_meta_fields;
-  
+
     // verify nonce
     if ( !isset( $_POST['wpbs_nonce'] ) || !wp_verify_nonce($_POST['wpbs_nonce'], basename(__FILE__)) )
         return $post_id;
@@ -399,7 +399,7 @@ function save_homepage_meta( $post_id ) {
         } elseif ( !current_user_can( 'edit_post', $post_id ) ) {
             return $post_id;
     }
-  
+
     // loop through fields and save the data
     foreach ( $custom_meta_fields as $field ) {
         $old = get_post_meta( $post_id, $field['id'], true );
@@ -452,7 +452,7 @@ add_filter( 'the_content', 'first_paragraph' );
      */
     class Bootstrap_Walker extends Walker_Nav_Menu
     {
- 
+
         /* Start of the <ul>
          *
          * Note on $depth: Counterintuitively, $depth here means the "depth right before we start this menu".
@@ -469,7 +469,7 @@ add_filter( 'the_content', 'first_paragraph' );
             }
             return;
         }
- 
+
         /* End of the <ul>
          *
          * Note on $depth: Counterintuitively, $depth here means the "depth right before we start this menu".
@@ -478,7 +478,7 @@ add_filter( 'the_content', 'first_paragraph' );
         function end_lvl(&$output, $depth = 0, $args = array())
         {
             if ($depth == 0) { // This is actually the end of the level-1 submenu ($depth is misleading here too!)
- 
+
                 // we don't have anything special for Bootstrap, so we'll just leave an HTML comment for now
                 $output .= '<!--.dropdown-->';
             }
@@ -486,7 +486,7 @@ add_filter( 'the_content', 'first_paragraph' );
             $output .= "\n{$tabs}</ul>\n";
             return;
         }
- 
+
         /* Output the <li> and the containing <a>
          * Note: $depth is "correct" at this level
          */
@@ -496,7 +496,7 @@ add_filter( 'the_content', 'first_paragraph' );
             $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
             $class_names = $value = '';
             $classes = empty( $item->classes ) ? array() : (array) $item->classes;
- 
+
             /* If this item has a dropdown menu, add the 'dropdown' class for Bootstrap */
             if ($item->hasChildren) {
                 $classes[] = 'dropdown';
@@ -505,7 +505,7 @@ add_filter( 'the_content', 'first_paragraph' );
                     $classes[] = 'dropdown-submenu';
                 }
             }
- 
+
             /* This is the stock Wordpress code that builds the <li> with all of its attributes */
             $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item ) );
             $class_names = ' class="' . esc_attr( $class_names ) . '"';
@@ -515,28 +515,28 @@ add_filter( 'the_content', 'first_paragraph' );
             $attributes .= ! empty( $item->xfn )        ? ' rel="'    . esc_attr( $item->xfn        ) .'"' : '';
             $attributes .= ! empty( $item->url )        ? ' href="'   . esc_attr( $item->url        ) .'"' : '';
             $item_output = $args->before;
- 
+
             /* If this item has a dropdown menu, make clicking on this link toggle it */
             if ($item->hasChildren && $depth == 0) {
                 $item_output .= '<a'. $attributes .' class="dropdown-toggle" data-toggle="dropdown">';
             } else {
                 $item_output .= '<a'. $attributes .'>';
             }
- 
+
             $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
- 
+
             /* Output the actual caret for the user to click on to toggle the menu */
             if ($item->hasChildren && $depth == 0) {
                 $item_output .= '<b class="caret"></b></a>';
             } else {
                 $item_output .= '</a>';
             }
- 
+
             $item_output .= $args->after;
             $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
             return;
         }
- 
+
         /* Close the <li>
          * Note: the <a> is already closed
          * Note 2: $depth is "correct" at this level
@@ -546,7 +546,7 @@ add_filter( 'the_content', 'first_paragraph' );
             $output .= '</li>';
             return;
         }
- 
+
         /* Add a 'hasChildren' property to the item
          * Code from: http://wordpress.org/support/topic/how-do-i-know-if-a-menu-item-has-children-or-is-a-leaf#post-3139633
          */
@@ -554,7 +554,7 @@ add_filter( 'the_content', 'first_paragraph' );
         {
             // check whether this item has children, and set $item->hasChildren accordingly
             $element->hasChildren = isset($children_elements[$element->ID]) && !empty($children_elements[$element->ID]);
- 
+
             // continue with normal behavior
             return parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
         }
@@ -568,7 +568,7 @@ function add_active_class($classes, $item) {
 	if( $item->menu_item_parent == 0 && in_array('current-menu-item', $classes) ) {
     $classes[] = "active";
 	}
-  
+
   return $classes;
 }
 
@@ -579,7 +579,7 @@ if( !function_exists("theme_styles") ) {
         wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '1.0', 'all' );
         wp_register_style( 'bootstrap-responsive', get_template_directory_uri() . '/library/css/responsive.css', array('bootstrap'), '1.0', 'all' );
         wp_register_style( 'wp-bootstrap', get_stylesheet_uri(), array('bootstrap-responsive'), '1.0', 'all' );
-        
+
         wp_enqueue_style( 'bootstrap' );
         wp_enqueue_style( 'bootstrap-responsive' );
         wp_enqueue_style( 'wp-bootstrap');
@@ -590,26 +590,26 @@ add_action( 'wp_enqueue_scripts', 'theme_styles' );
 // enqueue javascript
 if( !function_exists( "theme_js" ) ) {
   function theme_js(){
-  
+
     wp_register_script( 'bootstrap',
       get_template_directory_uri() . '/library/js/bootstrap.min.js',
       array('jquery'),
       '1.2' );
-  
+
     wp_register_script( 'wpbs-scripts',
       get_template_directory_uri() . '/library/js/scripts.js',
       array('jquery'),
       '1.2' );
-  
+
     wp_register_script(  'modernizr',
-      get_template_directory_uri() . '/library/js/modernizr.full.min.js',
+      get_template_directory_uri() . '/library/js/modernizr-custom.js',
       array('jquery'),
       '1.2' );
-  
+
     wp_enqueue_script('bootstrap');
     wp_enqueue_script('wpbs-scripts');
     wp_enqueue_script('modernizr');
-    
+
   }
 }
 add_action( 'wp_enqueue_scripts', 'theme_js' );
@@ -617,7 +617,7 @@ add_action( 'wp_enqueue_scripts', 'theme_js' );
 // Get theme options
 function get_wpbs_theme_options(){
   $theme_options_styles = '';
-    
+
       $heading_typography = of_get_option( 'heading_typography' );
       if ( $heading_typography['face'] != 'Default' ) {
         $theme_options_styles .= '
@@ -627,7 +627,7 @@ function get_wpbs_theme_options(){
           color: ' . $heading_typography['color'] . ';
         }';
       }
-      
+
       $main_body_typography = of_get_option( 'main_body_typography' );
       if ( $main_body_typography['face'] != 'Default' ) {
         $theme_options_styles .= '
@@ -637,7 +637,7 @@ function get_wpbs_theme_options(){
           color: ' . $main_body_typography['color'] . ';
         }';
       }
-      
+
       $link_color = of_get_option( 'link_color' );
       if ($link_color) {
         $theme_options_styles .= '
@@ -645,7 +645,7 @@ function get_wpbs_theme_options(){
           color: ' . $link_color . ';
         }';
       }
-      
+
       $link_hover_color = of_get_option( 'link_hover_color' );
       if ($link_hover_color) {
         $theme_options_styles .= '
@@ -653,7 +653,7 @@ function get_wpbs_theme_options(){
           color: ' . $link_hover_color . ';
         }';
       }
-      
+
       $link_active_color = of_get_option( 'link_active_color' );
       if ($link_active_color) {
         $theme_options_styles .= '
@@ -661,7 +661,7 @@ function get_wpbs_theme_options(){
           color: ' . $link_active_color . ';
         }';
       }
-      
+
       $topbar_position = of_get_option( 'nav_position' );
       if ($topbar_position == 'scroll') {
         $theme_options_styles .= '
@@ -677,7 +677,7 @@ function get_wpbs_theme_options(){
         '
         ;
       }
-      
+
       $topbar_bg_color = of_get_option( 'top_nav_bg_color' );
       $use_gradient = of_get_option( 'showhidden_gradient' );
 
@@ -688,10 +688,10 @@ function get_wpbs_theme_options(){
           background-image: none;
         }';
       }
-      
+
       if ( $use_gradient ) {
         $topbar_bottom_gradient_color = of_get_option( 'top_nav_bottom_gradient_color' );
-      
+
         $theme_options_styles .= '
         .navbar-inner, .navbar .fill {
           background-image: -khtml-gradient(linear, left top, left bottom, from(' . $topbar_bg_color . '), to('. $topbar_bottom_gradient_color . '));
@@ -706,7 +706,7 @@ function get_wpbs_theme_options(){
       }
       else{
       }
-      
+
       $topbar_link_color = of_get_option( 'top_nav_link_color' );
       if ( $topbar_link_color ) {
         $theme_options_styles .= '
@@ -714,7 +714,7 @@ function get_wpbs_theme_options(){
           color: '. $topbar_link_color . ';
         }';
       }
-      
+
       $topbar_link_hover_color = of_get_option( 'top_nav_link_hover_color' );
       if ( $topbar_link_hover_color ) {
         $theme_options_styles .= '
@@ -722,7 +722,7 @@ function get_wpbs_theme_options(){
           color: '. $topbar_link_hover_color . ';
         }';
       }
-      
+
       $topbar_dropdown_hover_bg_color = of_get_option( 'top_nav_dropdown_hover_bg' );
       if ( $topbar_dropdown_hover_bg_color ) {
         $theme_options_styles .= '
@@ -731,7 +731,7 @@ function get_wpbs_theme_options(){
           }
         ';
       }
-      
+
       $topbar_dropdown_item_color = of_get_option( 'top_nav_dropdown_item' );
       if ( $topbar_dropdown_item_color ){
         $theme_options_styles .= '
@@ -740,7 +740,7 @@ function get_wpbs_theme_options(){
           }
         ';
       }
-      
+
       $hero_unit_bg_color = of_get_option( 'hero_unit_bg_color' );
       if ( $hero_unit_bg_color ) {
         $theme_options_styles .= '
@@ -748,7 +748,7 @@ function get_wpbs_theme_options(){
           background-color: '. $hero_unit_bg_color . ';
         }';
       }
-      
+
       $suppress_comments_message = of_get_option( 'suppress_comments_message' );
       if ( $suppress_comments_message ){
         $theme_options_styles .= '
@@ -756,21 +756,21 @@ function get_wpbs_theme_options(){
           border-bottom: none;
         }';
       }
-      
+
       $additional_css = of_get_option( 'wpbs_css' );
       if( $additional_css ){
         $theme_options_styles .= $additional_css;
       }
-          
+
       if( $theme_options_styles ){
         echo '<style>'
         . $theme_options_styles . '
         </style>';
       }
-    
+
       $bootstrap_theme = of_get_option( 'wpbs_theme' );
       $use_theme = of_get_option( 'showhidden_themes' );
-      
+
       if( $bootstrap_theme && $use_theme ){
         if( $bootstrap_theme == 'default' ){}
         else {
