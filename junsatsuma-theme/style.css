@@ -746,3 +746,23 @@ blockquote.pull-left{
 		display: none;
 	}
 }
+
+/* WordPress core global styles reset body padding to 0, which cancels the 20px body
+   padding that Bootstrap's -20px navbar margins rely on below 768px and makes the page
+   overflow horizontally. Keep the navbar inside the viewport instead. */
+@media (max-width: 767px) {
+	.navbar-fixed-top,
+	.navbar-fixed-bottom,
+	.navbar-static-top {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+/* Fixed-size YouTube embed on the 404 page: shrink it to fit narrow screens while
+   keeping its 560x315 size on wider ones. */
+.error404 iframe {
+	max-width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 9;
+}

@@ -262,22 +262,15 @@ function my_widget_tag_cloud_args( $args ) {
 	return $args;
 }
 
-// filter tag cloud output so that it can be styled by CSS
-function add_tag_class( $taglinks ) {
-    $tags = explode('</a>', $taglinks);
-    $regex = "#(.*tag-link[-])(.*)(' title.*)#e";
-    $term_slug = "(get_tag($2) ? get_tag($2)->slug : get_category($2)->slug)";
-
-        foreach( $tags as $tag ) {
-        	$tagn[] = preg_replace($regex, "('$1$2 label tag-'.$term_slug.'$3')", $tag );
-        }
-
-    $taglinks = implode('</a>', $tagn);
-
-    return $taglinks;
+// add classes to tag cloud links so that they can be styled by CSS
+function add_tag_class( $tags_data ) {
+    foreach ( $tags_data as $key => $tag ) {
+        $tags_data[ $key ]['class'] .= ' label tag-' . $tag['slug'];
+    }
+    return $tags_data;
 }
 
-add_action( 'wp_tag_cloud', 'add_tag_class' );
+add_filter( 'wp_generate_tag_cloud_data', 'add_tag_class' );
 
 add_filter( 'wp_tag_cloud','wp_tag_cloud_filter', 10, 2) ;
 
@@ -583,7 +576,7 @@ if( !function_exists("theme_styles") ) {
         // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
         wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '2.3.2', 'all' );
         wp_register_style( 'bootstrap-responsive', get_template_directory_uri() . '/library/css/responsive.css', array('bootstrap'), '2.3.2', 'all' );
-        wp_register_style( 'wp-bootstrap', get_stylesheet_uri(), array('bootstrap-responsive'), '1.1', 'all' );
+        wp_register_style( 'wp-bootstrap', get_stylesheet_uri(), array('bootstrap-responsive'), '1.2', 'all' );
 
         wp_enqueue_style( 'bootstrap' );
         wp_enqueue_style( 'bootstrap-responsive' );
