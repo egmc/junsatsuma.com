@@ -581,9 +581,9 @@ function add_active_class($classes, $item) {
 if( !function_exists("theme_styles") ) {
     function theme_styles() {
         // This is the compiled css file from LESS - this means you compile the LESS file locally and put it in the appropriate directory if you want to make any changes to the master bootstrap.css.
-        wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '1.0', 'all' );
-        wp_register_style( 'bootstrap-responsive', get_template_directory_uri() . '/library/css/responsive.css', array('bootstrap'), '1.0', 'all' );
-        wp_register_style( 'wp-bootstrap', get_stylesheet_uri(), array('bootstrap-responsive'), '1.0', 'all' );
+        wp_register_style( 'bootstrap', get_template_directory_uri() . '/library/css/bootstrap.css', array(), '2.3.2', 'all' );
+        wp_register_style( 'bootstrap-responsive', get_template_directory_uri() . '/library/css/responsive.css', array('bootstrap'), '2.3.2', 'all' );
+        wp_register_style( 'wp-bootstrap', get_stylesheet_uri(), array('bootstrap-responsive'), '1.1', 'all' );
 
         wp_enqueue_style( 'bootstrap' );
         wp_enqueue_style( 'bootstrap-responsive' );
@@ -599,7 +599,7 @@ if( !function_exists( "theme_js" ) ) {
     wp_register_script( 'bootstrap',
       get_template_directory_uri() . '/library/js/bootstrap.min.js',
       array('jquery'),
-      '1.2' );
+      '2.3.2' );
 
     wp_register_script( 'wpbs-scripts',
       get_template_directory_uri() . '/library/js/scripts.js',

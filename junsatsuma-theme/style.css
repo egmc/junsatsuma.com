@@ -737,3 +737,12 @@ blockquote.pull-left{
 
 
 
+
+/* Bootstrap 2.3.2: the touch-device .dropdown-backdrop covers statically positioned
+   dropdown items inside the collapsed navbar, so taps would close the menu instead of
+   following the link. Hide it there to keep the 2.3.1 behaviour. */
+@media (max-width: 979px) {
+	.nav-collapse .dropdown-backdrop {
+		display: none;
+	}
+}
