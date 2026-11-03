@@ -540,6 +540,14 @@ if( !function_exists("theme_styles") ) {
 }
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 
+// Don't load jQuery Migrate on the front end: nothing there relies on the jQuery APIs it restores.
+function bones_remove_jquery_migrate( $scripts ) {
+	if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+		$scripts->registered['jquery']->deps = array_diff( $scripts->registered['jquery']->deps, array( 'jquery-migrate' ) );
+	}
+}
+add_action( 'wp_default_scripts', 'bones_remove_jquery_migrate' );
+
 // enqueue javascript
 if( !function_exists( "theme_js" ) ) {
   function theme_js(){
