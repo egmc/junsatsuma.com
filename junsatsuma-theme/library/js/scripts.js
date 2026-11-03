@@ -53,31 +53,6 @@ jQuery(document).ready(function($) {
 		$('a.edit-post').hide();
 	});
 	
-	// Input placeholder text fix for IE
-	$('[placeholder]').on('focus', function() {
-	  var input = $(this);
-	  if (input.val() == input.attr('placeholder')) {
-		input.val('');
-		input.removeClass('placeholder');
-	  }
-	}).on('blur', function() {
-	  var input = $(this);
-	  if (input.val() == '' || input.val() == input.attr('placeholder')) {
-		input.addClass('placeholder');
-		input.val(input.attr('placeholder'));
-	  }
-	}).trigger('blur');
-	
-	// Prevent submission of empty form
-	$('[placeholder]').parents('form').on('submit', function() {
-	  $(this).find('[placeholder]').each(function() {
-		var input = $(this);
-		if (input.val() == input.attr('placeholder')) {
-		  input.val('');
-		}
-	  })
-	});
-	
 	$('#s').on('focus', function(){
 		if( $(window).width() < 940 ){
 			$(this).animate({ width: '200px' });

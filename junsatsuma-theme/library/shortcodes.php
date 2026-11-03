@@ -58,8 +58,8 @@ function buttons( $atts, $content = null ) {
 		$size = "btn-" . $size;
 	}
 	
-	$output = '<a href="' . $url . '" class="btn '. $type . ' ' . $size . '">';
-	$output .= $text;
+	$output = '<a href="' . esc_url( $url ) . '" class="btn '. esc_attr( $type ) . ' ' . esc_attr( $size ) . '">';
+	$output .= wp_kses_post( $text );
 	$output .= '</a>';
 	
 	return $output;
@@ -78,11 +78,11 @@ function alerts( $atts, $content = null ) {
 	$close = $atts['close'];
 	$text = $atts['text'];
 	
-	$output = '<div class="fade in alert alert-'. $type . '">';
+	$output = '<div class="fade in alert alert-'. esc_attr( $type ) . '">';
 	if($close == 'true') {
 		$output .= '<a class="close" data-dismiss="alert">×</a>';
 	}
-	$output .= $text . '</div>';
+	$output .= wp_kses_post( $text ) . '</div>';
 	
 	return $output;
 }
@@ -100,11 +100,11 @@ function block_messages( $atts, $content = null ) {
 	$close = $atts['close'];
 	$text = $atts['text'];
 	
-	$output = '<div class="fade in alert alert-block alert-'. $type . '">';
+	$output = '<div class="fade in alert alert-block alert-'. esc_attr( $type ) . '">';
 	if($close == 'true') {
 		$output .= '<a class="close" data-dismiss="alert">×</a>';
 	}
-	$output .= '<p>' . $text . '</p></div>';
+	$output .= '<p>' . wp_kses_post( $text ) . '</p></div>';
 	
 	return $output;
 }
@@ -130,7 +130,7 @@ function blockquotes( $atts, $content = null ) {
 	$output .= '><p>' . $content . '</p>';
 	
 	if($cite){
-		$output .= '<small>' . $cite . '</small>';
+		$output .= '<small>' . wp_kses_post( $cite ) . '</small>';
 	}
 	
 	$output .= '</blockquote>';

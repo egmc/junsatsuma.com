@@ -5,8 +5,6 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title><?php wp_title( '|', true, 'right' ); ?></title>
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
@@ -29,14 +27,6 @@
 	</head>
 	
 	<body <?php body_class(); ?>>
-	<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=246337272193151";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 				
 		<header role="banner">
 		
