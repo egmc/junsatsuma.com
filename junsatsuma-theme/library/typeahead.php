@@ -1,10 +1,5 @@
 <?php 
 
-	// check wp user level
-	get_currentuserinfo(); 
-	// store to use later
-	global $user_level; 
-
 	// get list of post names to use in 'typeahead' plugin for search bar
 	if(of_get_option('search_bar', '1')) { // only do this if we're showing the search bar in the nav
 
@@ -16,15 +11,13 @@
 		$post_num = 0;
 
 		global $typeahead_data;
-		$typeahead_data = "[";
+		$typeahead_titles = array();
 
 		foreach( $myposts as $post ) :	setup_postdata($post);
-			$typeahead_data .= '"' . get_the_title() . '",';
+			$typeahead_titles[] = get_the_title();
 		endforeach;
 
-		$typeahead_data = substr($typeahead_data, 0, strlen($typeahead_data) - 1);
-
-		$typeahead_data .= "]";
+		$typeahead_data = wp_json_encode( $typeahead_titles );
 
 		$post = $tmp_post;
 

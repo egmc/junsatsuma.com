@@ -91,11 +91,11 @@ The comments page for Bones
   	</div>
 	<?php else : ?>
 
-	<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" class="form-vertical" id="commentform">
+	<form action="<?php echo esc_url( site_url( '/wp-comments-post.php' ) ); ?>" method="post" class="form-vertical" id="commentform">
 
 	<?php if ( is_user_logged_in() ) : ?>
 
-	<p class="comments-logged-in-as"><?php _e("Logged in as","bonestheme"); ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account","bonestheme"); ?>"><?php _e("Log out","bonestheme"); ?> &raquo;</a></p>
+	<p class="comments-logged-in-as"><?php _e("Logged in as","bonestheme"); ?> <a href="<?php echo esc_url( admin_url( 'profile.php' ) ); ?>"><?php echo $user_identity; ?></a>. <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e("Log out of this account","bonestheme"); ?>"><?php _e("Log out","bonestheme"); ?> &raquo;</a></p>
 
 	<?php else : ?>
 

@@ -79,7 +79,7 @@ function optionsframework_options() {
 	}
 		
 	// If using image radio buttons, define a directory path
-	$imagepath =  get_bloginfo('stylesheet_directory') . '/images/';
+	$imagepath =  get_stylesheet_directory_uri() . '/images/';
 		
 	$options = array();
 		
@@ -288,36 +288,35 @@ function wpbs_refresh_themes() {
     
     //Bootswatch API Method
     $BS_url = 'http://api.bootswatch.com';
-    $content = file_get_contents($BS_url);
-    $json = json_decode($content, true);
-    
-    
+    $response = wp_remote_get($BS_url);
+    if ( is_wp_error($response) || 200 != wp_remote_retrieve_response_code($response) ) {
+        echo "Could not fetch themes.";
+        die();
+    }
+    $json = json_decode(wp_remote_retrieve_body($response), true);
+    if ( empty($json['themes']) || !is_array($json['themes']) ) {
+        echo "Could not fetch themes.";
+        die();
+    }
+
+
     foreach ($json['themes'] as $item)
     {
-		
+
 		$url = $item['css-min'];
 		$title = strtolower($item['name']);
 		$desc = $item['description'];
-		
-		
-		// retrieve the contents of the css file
-		$css_url = $url;
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $css_url);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$css_contents = curl_exec($ch);
-		curl_close($ch);
-		
-		//retreive thumbnail
-		$thumb_url = $item['thumbnail'];
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, $thumb_url);
-		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$thumb_contents = curl_exec($ch);
-		curl_close($ch);
-		
+
+
+		// retrieve the contents of the css file and thumbnail
+		$css_response = wp_remote_get($url);
+		$thumb_response = wp_remote_get($item['thumbnail']);
+		if ( is_wp_error($css_response) || is_wp_error($thumb_response) ) {
+			continue;
+		}
+		$css_contents = wp_remote_retrieve_body($css_response);
+		$thumb_contents = wp_remote_retrieve_body($thumb_response);
+
 		// create the file using the title of the item and then close it
 		$template_path = get_template_directory();
 		$filenameCSS = $template_path . '/admin/themes/' . $title . '.css';
@@ -330,8 +329,12 @@ function wpbs_refresh_themes() {
 		fwrite($filehandle, $thumb_contents);
 		fclose($filehandle);
 		// resize thumb
-		$destDirectory = substr( $filenameThumb, 0, strlen( $filenameThumb-14 ) );
-		image_resize( $filenameThumb, 100, 60, true, '', $destDirectory, 100 );
+		$editor = wp_get_image_editor( $filenameThumb );
+		if ( !is_wp_error($editor) ) {
+			$editor->resize( 100, 60, true );
+			$editor->set_quality( 100 );
+			$editor->save( $editor->generate_filename( null, dirname( $filenameThumb ) ) );
+		}
 		
     }
     

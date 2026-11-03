@@ -17,7 +17,7 @@ function getTitleImageURL() {
     $img_url = "";
 
     if (file_exists($full_path)) {
-        $img_url = "/wp-content/themes/junsatsuma-theme" . $targe_path;
+        $img_url = get_template_directory_uri() . $targe_path;
     }
 
 	return $img_url;

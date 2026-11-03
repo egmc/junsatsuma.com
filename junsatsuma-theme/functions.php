@@ -242,7 +242,7 @@ add_filter( 'the_password_form', 'custom_password_form' );
 function custom_password_form() {
 	global $post;
 	$label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
-	$o = '<div class="clearfix"><form class="protected-post-form" action="' . get_option('siteurl') . '/wp-login.php?action=postpass" method="post">
+	$o = '<div class="clearfix"><form class="protected-post-form" action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" method="post">
 	' . '<p>' . __( "This post is password protected. To view it please enter your password below:" ,'bonestheme') . '</p>' . '
 	<label for="' . $label . '">' . __( "Password:" ,'bonestheme') . ' </label><div class="input-append"><input name="post_password" id="' . $label . '" type="password" size="20" /><input type="submit" name="Submit" class="btn btn-primary" value="' . esc_attr__( "Submit",'bonestheme' ) . '" /></div>
 	</form></div>
@@ -292,6 +292,7 @@ add_filter( 'widget_text', 'do_shortcode' );
 // Disable jump in 'read more' link
 function remove_more_jump_link( $link ) {
 	$offset = strpos($link, '#more-');
+	$end = false;
 	if ( $offset ) {
 		$end = strpos( $link, '"',$offset );
 	}
@@ -550,7 +551,7 @@ add_filter( 'the_content', 'first_paragraph' );
         /* Add a 'hasChildren' property to the item
          * Code from: http://wordpress.org/support/topic/how-do-i-know-if-a-menu-item-has-children-or-is-a-leaf#post-3139633
          */
-        function display_element ($element, &$children_elements, $max_depth, $depth = 0, $args, &$output)
+        function display_element ($element, &$children_elements, $max_depth, $depth, $args, &$output)
         {
             // check whether this item has children, and set $item->hasChildren accordingly
             $element->hasChildren = isset($children_elements[$element->ID]) && !empty($children_elements[$element->ID]);
@@ -559,7 +560,11 @@ add_filter( 'the_content', 'first_paragraph' );
             return parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
         }
     }
-add_editor_style('editor-style.css');
+
+function bones_add_editor_style() {
+	add_editor_style('editor-style.css');
+}
+add_action('after_setup_theme', 'bones_add_editor_style');
 
 // Add Twitter Bootstrap's standard 'active' class name to the active nav link item
 add_filter('nav_menu_css_class', 'add_active_class', 10, 2 );
@@ -601,14 +606,8 @@ if( !function_exists( "theme_js" ) ) {
       array('jquery'),
       '1.2' );
 
-    wp_register_script(  'modernizr',
-      get_template_directory_uri() . '/library/js/modernizr-custom.js',
-      array('jquery'),
-      '1.2' );
-
     wp_enqueue_script('bootstrap');
     wp_enqueue_script('wpbs-scripts');
-    wp_enqueue_script('modernizr');
 
   }
 }
