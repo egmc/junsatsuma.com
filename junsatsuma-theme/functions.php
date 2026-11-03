@@ -39,6 +39,12 @@ function bones_document_title_separator() {
 }
 add_filter( 'document_title_separator', 'bones_document_title_separator' );
 
+// Every browser in use renders emoji natively, so the front-end emoji detection
+// script and its styles only add a request to each page.
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_emoji_styles' );
+
 
 /************* THUMBNAIL SIZE OPTIONS *************/
 
