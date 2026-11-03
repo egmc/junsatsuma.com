@@ -9,6 +9,11 @@
 
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
+		<?php if ( is_front_page() ) : ?>
+		<!-- Fetch the first slideshow image early; it is the largest thing above the fold -->
+		<link rel="preload" as="image" fetchpriority="high" href="<?php echo esc_url( get_template_directory_uri() . '/images/top_main_visual2025-01_970-500.webp' ); ?>" type="image/webp">
+		<?php endif; ?>
+
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
