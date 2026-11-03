@@ -759,9 +759,10 @@ blockquote.pull-left{
 	}
 
 	/* Bootstrap's responsive .container-fluid has no padding here, so the body text runs
-	   edge to edge. Give the content the same 10px side margin as the header (navbar-inner
+	   edge to edge. Give the content and footer the same 10px side margin as the header (navbar-inner
 	   5px + brand 10px - 5px), but let full-width media keep bleeding to the screen edges. */
-	#content {
+	#content,
+	#inner-footer {
 		-webkit-box-sizing: border-box;
 		box-sizing: border-box;
 		padding-left: 10px;
