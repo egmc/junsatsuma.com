@@ -653,7 +653,10 @@ blockquote.pull-left{
 }
 
 @media only screen and (min-width: 980px) {
-	body{
+	/* Leave room for the fixed navbar. "html body" outranks the "body { padding: 0 }"
+	   that WordPress core global styles print after this stylesheet; without it the
+	   page titles slide under the header. */
+	html body{
 		padding-top: 60px;
 	}
 	
