@@ -17,20 +17,21 @@ Template Name: Full Width Page
 						<header>
 
 							<?php if (the_title("", "", false) == 'top') { ?>
+							<h1 class="top-page-title"><?php bloginfo('name'); ?></h1>
 							<div id="slideshow">
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-01_970-500.webp" class="active" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-02_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-03_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-04_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-05_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-06_970-500.webp" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-01_970-500.webp" class="active" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-02_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-03_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-04_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-05_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual2025-06_970-500.webp" alt="" />
 
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual6_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual5_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual7_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual8_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual3_970-500.webp" />
-							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual4_970-500.webp" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual6_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual5_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual7_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual8_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual3_970-500.webp" alt="" />
+							<img src="/wp-content/themes/junsatsuma-theme/images/top_main_visual4_970-500.webp" alt="" />
 							</div>
 							<script type="text/javascript">
 							jQuery(function() {
@@ -58,7 +59,7 @@ Template Name: Full Width Page
 							<div class="page-header">
                                 <h1>
                                     <?php if (getTitleImageURL()) { ?>
-                                        <img src="<?php echo getTitleImageURL(); ?>" />
+                                        <img src="<?php echo getTitleImageURL(); ?>" alt="<?php the_title_attribute(); ?>" />
                                     <?php  } else { the_title("", "", true); } ?>
                                 </h1>
                             </div>

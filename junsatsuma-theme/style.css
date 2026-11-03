@@ -808,3 +808,18 @@ blockquote.pull-left{
 	height: auto;
 	aspect-ratio: 16 / 9;
 }
+
+/* The top page shows the slideshow instead of a page title, so it has no visible h1.
+   Keep the site name as the h1 for screen readers and search engines without
+   showing it (same technique as WordPress's .screen-reader-text). */
+#main .top-page-title {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
