@@ -8,22 +8,15 @@
 
 function optionsframework_option_name() {
 
-	// This gets the theme name from the stylesheet (lowercase and without spaces)
-	if ( function_exists( 'wp_get_theme' ) ) {
-                $the_theme = wp_get_theme(  get_template_directory() . '/style.css' );
-        // WordPress 3.3
-        } else {
-                $the_theme = get_theme_data(  get_template_directory() . '/style.css' );
-        }
-        $themename = $the_theme['Title'];
-        
-	$themename = preg_replace("/\W/", "", strtolower($themename) );
-	
+	// The option ID has always been derived from the path of style.css: the file path used to be passed to
+	// wp_get_theme(), which does not resolve a path, so its "Title" was the path itself. Keep generating the
+	// same value so that the saved theme options stay attached. Note that it changes if the theme directory
+	// path changes (e.g. after a server move), and that the theme options will then look reset.
+	$themename = preg_replace( "/\W/", "", strtolower( get_template_directory() . '/style.css' ) );
+
 	$optionsframework_settings = get_option('optionsframework');
 	$optionsframework_settings['id'] = $themename;
 	update_option('optionsframework', $optionsframework_settings);
-	
-	// echo $themename;
 }
 
 /**
