@@ -31,7 +31,7 @@
 							
 							<?php
 							// only show edit button if user has permission to edit posts
-							if( $user_level > 0 ) {
+							if( current_user_can( 'edit_post', get_the_ID() ) ) {
 							?>
 							<a href="<?php echo get_edit_post_link(); ?>" class="btn btn-success edit-post"><i class="icon-pencil icon-white"></i> <?php _e("Edit post","bonestheme"); ?></a>
 							<?php } ?>

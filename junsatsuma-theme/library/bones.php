@@ -10,10 +10,13 @@ URL: http://themble.com/bones/
 */
 
 // Adding Translation Option
-load_theme_textdomain( 'bonestheme', TEMPLATEPATH.'/languages' );
-$locale = get_locale();
-$locale_file = TEMPLATEPATH."/languages/$locale.php";
-if ( is_readable($locale_file) ) require_once($locale_file);
+function bones_load_textdomain() {
+	load_theme_textdomain( 'bonestheme', get_template_directory() . '/languages' );
+	$locale = get_locale();
+	$locale_file = get_template_directory() . "/languages/$locale.php";
+	if ( is_readable($locale_file) ) require_once($locale_file);
+}
+add_action('after_setup_theme', 'bones_load_textdomain');
 
 // Cleaning up the Wordpress Head
 function bones_head_cleanup() {
@@ -38,7 +41,7 @@ function bones_head_cleanup() {
 function bones_queue_js(){ if (!is_admin()){ if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) wp_enqueue_script( 'comment-reply' ); }
 }
 	// reply on comments script
-	add_action('wp_print_scripts', 'bones_queue_js');
+	add_action('wp_enqueue_scripts', 'bones_queue_js');
 
 // Fixing the Read More in the Excerpts
 // This removes the annoying […] to a Read More link
@@ -134,6 +137,7 @@ function bones_related_posts() {
 	global $post;
 	$tags = wp_get_post_tags($post->ID);
 	if($tags) {
+		$tag_arr = '';
 		foreach($tags as $tag) { $tag_arr .= $tag->slug . ','; }
         $args = array(
         	'tag' => $tag_arr,

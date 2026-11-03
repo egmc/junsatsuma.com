@@ -1,38 +1,23 @@
 <!doctype html>
 
-<!--[if IEMobile 7 ]> <html <?php language_attributes(); ?>class="no-js iem7"> <![endif]-->
-<!--[if lt IE 7 ]> <html <?php language_attributes(); ?> class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html <?php language_attributes(); ?> class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html <?php language_attributes(); ?> class="no-js ie8"> <![endif]-->
-<!--[if (gte IE 9)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
-	
+<html <?php language_attributes(); ?> class="no-js">
+
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		
-		<title><?php wp_title( '|', true, 'right' ); ?></title>
-				
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				
-		<!-- media-queries.js (fallback) -->
-		<!--[if lt IE 9]>
-			<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-		<![endif]-->
 
-		<!-- html5.js -->
-		<!--[if lt IE 9]>
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		
+		<title><?php wp_title( '|', true, 'right' ); ?></title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 
 		<!-- wordpress head functions -->
 		<?php wp_head(); ?>
 		<!-- end of wordpress head -->
-		
-		<link rel='stylesheet' id='junsatsuma-custom'  href='/wp-content/themes/junsatsuma-theme/custom.css' type='text/css' media='all' />
-		<link rel="shortcut icon" href="/wp-content/themes/junsatsuma-theme/images/favicon.ico" type="image/vnd.microsoft.icon" />
-		<link rel="icon" href="/wp-content/themes/junsatsuma-theme/images/favicon.ico" type="image/vnd.microsoft.icon" />
+
+		<link rel='stylesheet' id='junsatsuma-custom'  href='<?php echo esc_url( get_template_directory_uri() . '/custom.css' ); ?>' type='text/css' media='all' />
+		<link rel="shortcut icon" href="<?php echo esc_url( get_template_directory_uri() . '/images/favicon.ico' ); ?>" type="image/vnd.microsoft.icon" />
+		<link rel="icon" href="<?php echo esc_url( get_template_directory_uri() . '/images/favicon.ico' ); ?>" type="image/vnd.microsoft.icon" />
 		<meta property="fb:app_id" content="246337272193151" />
 
 		<!-- theme options from options panel -->
@@ -81,7 +66,7 @@
 							
 							<?php if(of_get_option('search_bar', '1')) {?>
 							<form class="navbar-search pull-right" role="search" method="get" id="searchform" action="<?php echo home_url( '/' ); ?>">
-								<input name="s" id="s" type="text" class="search-query" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>" data-provide="typeahead" data-items="4" data-source='<?php echo $typeahead_data; ?>'>
+								<input name="s" id="s" type="text" class="search-query" autocomplete="off" placeholder="<?php _e('Search','bonestheme'); ?>" data-provide="typeahead" data-items="4" data-source='<?php echo esc_attr( $typeahead_data ); ?>'>
 							</form>
 							<?php } ?>
 							
