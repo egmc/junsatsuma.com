@@ -757,6 +757,29 @@ blockquote.pull-left{
 		margin-left: 0;
 		margin-right: 0;
 	}
+
+	/* Bootstrap's responsive .container-fluid has no padding here, so the body text runs
+	   edge to edge. Give the content the same 10px side margin as the header (navbar-inner
+	   5px + brand 10px - 5px), but let full-width media keep bleeding to the screen edges. */
+	#content {
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	#main #slideshow,
+	#main .video-container,
+	#main .post_content > .wp-block-image,
+	#main .post_content > .wp-block-embed,
+	#main .post_content > .wp-block-video,
+	#main .post_content > .epyt-gallery,
+	#main .post_content > .jwplayer {
+		width: calc(100% + 20px) !important;
+		max-width: none;
+		margin-left: -10px;
+		margin-right: -10px;
+	}
 }
 
 /* Fixed-size YouTube embed on the 404 page: shrink it to fit narrow screens while
