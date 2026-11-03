@@ -1,5 +1,6 @@
 // add twitter bootstrap classes and color based on how many times tag is used
 function addTwitterBSClass(thisObj) {
+  var $ = jQuery;
   var title = $(thisObj).attr('title');
   if (title) {
     var titles = title.split(' ');
