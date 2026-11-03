@@ -750,6 +750,21 @@ blockquote.pull-left{
 	}
 }
 
+/* The top page slideshow box is fixed at 500px tall (custom.css), but on narrower
+   screens the 970x500 images shrink, leaving a large blank area below them. Size the
+   box from the images' aspect ratio instead. Desktop keeps the fixed height. */
+@media (max-width: 979px) {
+	#main #slideshow {
+		height: auto;
+		aspect-ratio: 970 / 500;
+	}
+
+	#main #slideshow img {
+		width: 100%;
+		height: auto;
+	}
+}
+
 /* WordPress core global styles reset body padding to 0, which cancels the 20px body
    padding that Bootstrap's -20px navbar margins rely on below 768px and makes the page
    overflow horizontally. Keep the navbar inside the viewport instead. */
