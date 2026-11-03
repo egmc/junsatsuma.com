@@ -29,9 +29,6 @@ function bones_custom_admin_footer() {
 	echo '<span id="footer-thankyou">Developed by <a href="http://320press.com" target="_blank">320press</a></span>. Built using <a href="http://themble.com/bones" target="_blank">Bones</a>.';
 }
 
-// adding it to the admin area
-add_filter('admin_footer_text', 'bones_custom_admin_footer');
-
 // Set content width
 if ( ! isset( $content_width ) ) $content_width = 580;
 
@@ -192,7 +189,7 @@ function bones_comments($comment, $args, $depth) {
 
                     <?php comment_text() ?>
 
-                    <time datetime="<?php echo comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time('F jS, Y'); ?> </a></time>
+                    <time datetime="<?php comment_time('Y-m-j'); ?>"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>"><?php comment_time('F jS, Y'); ?> </a></time>
 
 					<?php comment_reply_link(array_merge( $args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
                 </div>
@@ -492,7 +489,7 @@ add_filter( 'the_content', 'first_paragraph' );
             $classes = empty( $item->classes ) ? array() : (array) $item->classes;
 
             /* If this item has a dropdown menu, add the 'dropdown' class for Bootstrap */
-            if ($item->hasChildren) {
+            if ($this->has_children) {
                 $classes[] = 'dropdown';
                 // level-1 menus also need the 'dropdown-submenu' class
                 if($depth == 1) {
@@ -511,7 +508,7 @@ add_filter( 'the_content', 'first_paragraph' );
             $item_output = $args->before;
 
             /* If this item has a dropdown menu, make clicking on this link toggle it */
-            if ($item->hasChildren && $depth == 0) {
+            if ($this->has_children && $depth == 0) {
                 $item_output .= '<a'. $attributes .' class="dropdown-toggle" data-toggle="dropdown">';
             } else {
                 $item_output .= '<a'. $attributes .'>';
@@ -520,7 +517,7 @@ add_filter( 'the_content', 'first_paragraph' );
             $item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
 
             /* Output the actual caret for the user to click on to toggle the menu */
-            if ($item->hasChildren && $depth == 0) {
+            if ($this->has_children && $depth == 0) {
                 $item_output .= '<b class="caret"></b></a>';
             } else {
                 $item_output .= '</a>';
@@ -539,18 +536,6 @@ add_filter( 'the_content', 'first_paragraph' );
         {
             $output .= '</li>';
             return;
-        }
-
-        /* Add a 'hasChildren' property to the item
-         * Code from: http://wordpress.org/support/topic/how-do-i-know-if-a-menu-item-has-children-or-is-a-leaf#post-3139633
-         */
-        function display_element ($element, &$children_elements, $max_depth, $depth, $args, &$output)
-        {
-            // check whether this item has children, and set $item->hasChildren accordingly
-            $element->hasChildren = isset($children_elements[$element->ID]) && !empty($children_elements[$element->ID]);
-
-            // continue with normal behavior
-            return parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
         }
     }
 

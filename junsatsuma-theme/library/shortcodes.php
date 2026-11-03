@@ -33,12 +33,16 @@ function gallery_shortcode_tbs($attr) {
 
 // Buttons
 function buttons( $atts, $content = null ) {
-	extract( shortcode_atts( array(
+	$atts = shortcode_atts( array(
 	'type' => 'default', /* primary, default, info, success, danger, warning, inverse */
 	'size' => 'default', /* mini, small, default, large */
 	'url'  => '',
 	'text' => '', 
-	), $atts ) );
+	), $atts );
+	$type = $atts['type'];
+	$size = $atts['size'];
+	$url = $atts['url'];
+	$text = $atts['text'];
 	
 	if($type == "default"){
 		$type = "";
@@ -65,11 +69,14 @@ add_shortcode('button', 'buttons');
 
 // Alerts
 function alerts( $atts, $content = null ) {
-	extract( shortcode_atts( array(
+	$atts = shortcode_atts( array(
 	'type' => 'alert-info', /* alert-info, alert-success, alert-error */
 	'close' => 'false', /* display close link */
 	'text' => '', 
-	), $atts ) );
+	), $atts );
+	$type = $atts['type'];
+	$close = $atts['close'];
+	$text = $atts['text'];
 	
 	$output = '<div class="fade in alert alert-'. $type . '">';
 	if($close == 'true') {
@@ -84,11 +91,14 @@ add_shortcode('alert', 'alerts');
 
 // Block Messages
 function block_messages( $atts, $content = null ) {
-	extract( shortcode_atts( array(
+	$atts = shortcode_atts( array(
 	'type' => 'alert-info', /* alert-info, alert-success, alert-error */
 	'close' => 'false', /* display close link */
 	'text' => '', 
-	), $atts ) );
+	), $atts );
+	$type = $atts['type'];
+	$close = $atts['close'];
+	$text = $atts['text'];
 	
 	$output = '<div class="fade in alert alert-block alert-'. $type . '">';
 	if($close == 'true') {
@@ -103,10 +113,12 @@ add_shortcode('block-message', 'block_messages');
 
 // Block Messages
 function blockquotes( $atts, $content = null ) {
-	extract( shortcode_atts( array(
+	$atts = shortcode_atts( array(
 	'float' => '', /* left, right */
 	'cite' => '', /* text for cite */
-	), $atts ) );
+	), $atts );
+	$float = $atts['float'];
+	$cite = $atts['cite'];
 	
 	$output = '<blockquote';
 	if($float == 'left') {
